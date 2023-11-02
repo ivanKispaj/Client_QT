@@ -49,6 +49,8 @@ private slots:
     void loadAppData();
 
 
+    void on_actionClose_this_client_triggered();
+
 private:
     Ui::MainWindow *ui;
     TCPClient *_network = new TCPClient();

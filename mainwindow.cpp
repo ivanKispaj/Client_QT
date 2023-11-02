@@ -5,7 +5,7 @@
 //
 
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
+#include "ui_mainwindow.h"
 #include "authorization.h"
 #include <QShowEvent>
 #include <QtCore>
@@ -371,6 +371,13 @@ void MainWindow::applyResizeWindow()
         itemWidget->setupUI();
     }
 }
+
+void MainWindow::on_actionClose_this_client_triggered()
+{
+    QTimer::singleShot(0, this, qApp->quit);
+}
+
+
 
 
 
