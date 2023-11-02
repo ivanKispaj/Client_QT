@@ -81,7 +81,7 @@ void MainWindow::userIsLogined(const User &user)
 {
     ui->userDataDescription->setText(user.getUserName());
     loadAppData();
-    this->setWindowTitle(tr("Chat client: ") + user.getUserLogin());
+    this->setWindowTitle(tr("Chat client: ") + "@" + user.getUserLogin());
     _user = user;
     setTimerForUpdate();
 }

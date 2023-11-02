@@ -11,7 +11,7 @@ UserWidget::~UserWidget() { delete ui; }
 
 void UserWidget::setupUI()
 {
-    ui->wUserLogin->setText(_user.getUserLogin());
+    ui->wUserLogin->setText("@" + _user.getUserLogin());
     ui->wUserName->setText(_user.getUserName());
     ui->groupBox->setTitle("id: " + QString::number(_user.getId()));
     ui->isAdminUser->setEnabled(false);
