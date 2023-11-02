@@ -236,7 +236,7 @@ void MainWindow::authentificate()
         }
     } else
     {
-        this->close();
+        QTimer::singleShot(0, this, qApp->quit);
     }
 }
 
