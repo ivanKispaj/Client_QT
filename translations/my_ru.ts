@@ -149,22 +149,22 @@
         <translation>Форма</translation>
     </message>
     <message>
-        <location filename="../messagewidget.ui" line="47"/>
+        <location filename="../messagewidget.ui" line="68"/>
         <source>id:</source>
         <translation>id:</translation>
     </message>
     <message>
-        <location filename="../messagewidget.ui" line="91"/>
+        <location filename="../messagewidget.ui" line="112"/>
         <source>authorId</source>
         <translation>автор id</translation>
     </message>
     <message>
-        <location filename="../messagewidget.ui" line="155"/>
+        <location filename="../messagewidget.ui" line="185"/>
         <source>datel</source>
         <translation>Дата</translation>
     </message>
     <message>
-        <location filename="../messagewidget.cpp" line="21"/>
+        <location filename="../messagewidget.cpp" line="36"/>
         <source>Author message: </source>
         <translation>Автор сообщения: </translation>
     </message>

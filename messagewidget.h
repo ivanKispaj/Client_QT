@@ -20,7 +20,7 @@ public:
     QString _authorName;
     int _authorId{0};
     ~MessageWidget();
-    void setupUI();
+    void setupUI(int id);
     void resizeUI(QSize);
 private slots:
 

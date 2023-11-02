@@ -14,13 +14,27 @@ MessageWidget::~MessageWidget()
     delete ui;
 }
 
-void MessageWidget::setupUI()
+void MessageWidget::setupUI(int id)
 {
+    if (id != _message.getAuthorID())
+    {
+        ui->spacerLableLeft->hide();
+        ui->groupBox->setStyleSheet(" QGroupBox {\
+                                        background-color: rgba(210, 216, 219, 100);\
+                                        color: rgb(0, 0, 0);\
+                                         }");
+    } else
+    {
+        ui->groupBox->setStyleSheet(" QGroupBox {\
+                                        background-color: rgba(170, 193, 233, 100);\
+                                        color: rgb(0, 0, 0);\
+                                         }");
+        ui->spacerLableRight->hide();
+    }
     ui->groupBox->setTitle("id: " + QString::number(_message.getId()));
     ui->messageTextEdit->setText(_message.getMessage());
     ui->authorNamelable->setText(tr("Author message: ") + _authorName);
     setDataUI(_message.getDate());
-
 }
 
 void MessageWidget::resizeUI(QSize size)

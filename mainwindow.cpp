@@ -189,12 +189,12 @@ void MainWindow::appendWidgetToListWidget(const WidgetType type, const QJsonObje
             MessageWidget *mWidget = new MessageWidget;
             mWidget->_message = message;
             mWidget->_authorName = getUserNameId(message.getAuthorID());
-            item->setSizeHint(QSize(size.width(), 88));
+            item->setSizeHint(QSize(size.width(), 100));
             QSize itemSize = item->sizeHint();
             mWidget->resizeUI(itemSize);
             connect(mWidget, &MessageWidget::updateSize, this, &MainWindow::updateSizeItem);
             ui->messagesListWidget->setItemWidget(item, mWidget);
-            mWidget->setupUI();
+            mWidget->setupUI(_user.getId());
         }
 
     }
@@ -351,7 +351,7 @@ void MainWindow::updateSizeItem(int height)
 
         if (itemWidget == widget) {
             QSize size = item->sizeHint();
-            item->setSizeHint(QSize(size.width(), 88 + height));
+            item->setSizeHint(QSize(size.width(), 100 + height));
             break;
         }
     }
@@ -368,7 +368,7 @@ void MainWindow::applyResizeWindow()
         item->setSizeHint(QSize(size.width(),item->sizeHint().height()));
         MessageWidget* itemWidget = qobject_cast<MessageWidget*>(ui->messagesListWidget->itemWidget(item));
         itemWidget->resizeUI(item->sizeHint());
-        itemWidget->setupUI();
+        itemWidget->setupUI(_user.getId());
     }
 }
 
