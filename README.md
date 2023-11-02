@@ -31,8 +31,20 @@
     После успешного подключения программа создаст дефолтные таблицы БД
 
 
-https://github.com/ivanKispaj/Server_QT/assets/91827767/7f10fbbe-d87d-4b52-bb26-8885882bbd31
+### Компиляция
 
+
+
+https://github.com/ivanKispaj/Client_QT/assets/91827767/83011372-1603-4a59-abb9-b07f1bcdb65f
+
+
+
+
+### Демонстрация работы
+
+
+
+https://github.com/ivanKispaj/Client_QT/assets/91827767/e2fff173-c2b2-4496-98d6-43a98d42e0d5
 
 
 
