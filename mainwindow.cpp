@@ -236,7 +236,7 @@ void MainWindow::authentificate()
         }
     } else
     {
-        QTimer::singleShot(0, this, qApp->quit);
+        QTimer::singleShot(0, this, &MainWindow::close);
     }
 }
 
@@ -374,7 +374,7 @@ void MainWindow::applyResizeWindow()
 
 void MainWindow::on_actionClose_this_client_triggered()
 {
-    QTimer::singleShot(0, this, qApp->quit);
+    QTimer::singleShot(0, this, &MainWindow::close);
 }
 
 
