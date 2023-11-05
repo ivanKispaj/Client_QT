@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if(APPLE)
-set(Qt6_LUPDATE_EXECUTABLE "/usr/local/Cellar/qt/6.5.2/bin/lupdate")
+set(Qt6_LUPDATE_EXECUTABLE "/usr/local/Cellar/qt/6.6.0/bin/lupdate")
 endif()
 #опция CMAKE_INCLUDE_CURRENT_DIR обязательно должна быть включена,
 #если вы не меняли пути генерации файлов для Qt.
