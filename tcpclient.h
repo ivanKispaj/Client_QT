@@ -30,16 +30,17 @@ public:
 
     void sendResponse(uint16_t command, const QJsonObject &data = QJsonObject());
     bool isConnected();
-
+   // void waitReadData();
 signals:
     void responseReceived(const QByteArray &response);
 private slots:
     void handleResponse();
     void onDisconnected();
-
 private:
     QTcpSocket *_socket;
     const QString _host = "localhost";
     const int _port = 45000;
     QByteArray _data;
+    bool _isReadData{true};
+ //   QThread *_waitDatathread{nullptr};
 };

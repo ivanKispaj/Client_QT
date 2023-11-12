@@ -64,7 +64,6 @@ private:
     void showEvent(QShowEvent *event) override;
     void updateChatStateTypeUI();
     QString getUserNameId(int id);
-    void setTimerForUpdate();
 protected:
     void resizeEvent(QResizeEvent *event) override;
     void appendWidgetToListWidget(const WidgetType type, const QJsonObject &object);

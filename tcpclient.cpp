@@ -2,6 +2,7 @@
 
 #include "tcpclient.h"
 #include <QJsonDocument>
+#include <QJsonArray>
 
 TCPClient::TCPClient(QObject *parent)
     : QObject(parent), _socket(nullptr)
@@ -49,7 +50,9 @@ bool TCPClient::isConnected()
 
 void TCPClient::handleResponse()
 {
-    _data = _socket->readAll();
+
+    QByteArray data = _socket->readAll();
+    emit responseReceived(data);
 }
 
 void TCPClient::onDisconnected()

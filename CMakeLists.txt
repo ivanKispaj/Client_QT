@@ -113,6 +113,7 @@ add_executable(ChatClient ${QM_FILES} ${SRC_FILES} ${HEADERS_FILES}
 
 
 
+
 )
 
 #подключаем к проекту библиотеки

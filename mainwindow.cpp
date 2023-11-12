@@ -23,8 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->setWindowTitle(tr("Chat client"));
     // connects
-    connect(_network, &TCPClient::responseReceived, this, &MainWindow::updateUI);
     connect(ui->usersListWidget, &QListView::clicked, this, &MainWindow::onItemClicked);
+    connect(_network, &TCPClient::responseReceived, this, &MainWindow::updateUI);
     ui->verticalLayout_3->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->messagesListWidget->setSelectionMode(QAbstractItemView::NoSelection);
     ui->messageTextEdit->setPlaceholderText(tr("Enter your message...."));
@@ -80,10 +80,9 @@ void MainWindow::on_goToPublicChat_clicked()
 void MainWindow::userIsLogined(const User &user)
 {
     ui->userDataDescription->setText(user.getUserName());
-    loadAppData();
     this->setWindowTitle(tr("Chat client: ") + "@" + user.getUserLogin());
     _user = user;
-    setTimerForUpdate();
+    loadAppData();
 }
 
 void MainWindow::showEvent(QShowEvent *event)
@@ -119,18 +118,6 @@ QString MainWindow::getUserNameId(int id)
     return "";
 }
 
-void MainWindow::setTimerForUpdate()
-{
-    QTimer *timer = new QTimer();
-
-    // Установка интервала в 5 секунд
-    timer->setInterval(2500); // 5000 миллисекунд = 5 секунд
-    // Подключение функции к сигналу таймера
-    connect(timer, &QTimer::timeout,this, &MainWindow::loadAppData);
-    // Запуск таймера
-    timer->start();
-}
-
 void MainWindow::loadAppData()
 {
     _network->sendResponse(TCPClient::GET_ALL_USERS);
@@ -153,15 +140,19 @@ void MainWindow::appendWidgetToListWidget(const WidgetType type, const QJsonObje
         _users.append(user);
         if (user.getId() != _user.getId())
         {
-            UserWidget *uWidget = new UserWidget;
-            uWidget->_user = user;
-            uWidget->setupUI();
-            item = new QListWidgetItem(ui->usersListWidget);
-            item->setSizeHint(QSize(150, 80));
+            if (!user.isDeleted())
+            {
+                UserWidget *uWidget = new UserWidget;
+                uWidget->_user = user;
+                uWidget->setupUI();
+                item = new QListWidgetItem(ui->usersListWidget);
+                item->setSizeHint(QSize(150, 80));
 
-            QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-            uWidget->setSizePolicy(sizePolicy);
-            ui->usersListWidget->setItemWidget(item, uWidget);
+                QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+                uWidget->setSizePolicy(sizePolicy);
+                ui->usersListWidget->setItemWidget(item, uWidget);
+            }
+
         }
     }
     break;
@@ -280,6 +271,9 @@ void MainWindow::updateUI(const QByteArray &data)
                         appendWidgetToListWidget(WidgetType::user, jsonObject);
                     }
                 }
+            } else if (obj.contains("user"))
+            {
+                appendWidgetToListWidget(WidgetType::user, obj["user"].toObject());
             } else if (obj.contains("messages"))
             {
                 QJsonArray messages = obj["messages"].toArray();
